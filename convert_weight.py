@@ -27,8 +27,11 @@ load = tf.train.import_meta_graph(org_weights_path + '.meta')
 with tf.Session() as sess:
     load.restore(sess, org_weights_path)
     for var in tf.global_variables():
-        var_name = var.op.name
+        # 获取字典中的所有
+        var_name = var.op.nam
+        # 分割
         var_name_mess = str(var_name).split('/')
+       # 数据形状   
         var_shape = var.shape
         org_weights_mess.append([var_name, var_shape])
         print("=> " + str(var_name).ljust(50), var_shape)
